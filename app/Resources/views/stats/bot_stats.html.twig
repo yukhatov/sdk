@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% set activeTab = 'bot_stats' %}
+    {{ parent() }}
+
+    <div class="container-fluid"><div class="row">
+            <div class="col-md-12">
+
+                <table id="bot-stats-table" class="table">
+                    <thead>
+                        <tr>
+                            <th>Platform</th>
+                            <th>Activations count</th>
+                            <th>Offer requests count</th>
+                            <th>Approve requests count</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Total:</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        {% for stat in stats %}
+                            <tr>
+                                <td>{{ stat.domain }}</td>
+                                <td>{{ stat.activationsCount }}</td>
+                                <td>{{ stat.totalRequests }}</td>
+                                <td>{{ stat.approveRequests }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div></div>
+
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/stats.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('js/bot_stats.js') }}"></script>
+    <script type="text/javascript" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="//cdn.datatables.net/plug-ins/1.10.16/api/sum().js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+{% endblock %}

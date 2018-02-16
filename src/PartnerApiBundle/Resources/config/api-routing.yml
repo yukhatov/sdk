@@ -1,0 +1,5 @@
+
+api_out:
+    type: rest
+    resource: "@PartnerApiBundle/Controller/"
+    name_prefix:  partner_api

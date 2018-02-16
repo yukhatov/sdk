@@ -1,0 +1,78 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/security.html
+security:
+
+    role_hierarchy:
+         ROLE_ADMIN:       ROLE_USER
+
+    # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    providers:
+        user_db:
+            entity: { class: AppBundle\Entity\Publisher }
+        fos_userbundle:
+            id: fos_user.user_provider.username
+
+    encoders:
+        FOS\UserBundle\Model\UserInterface: bcrypt
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        api_doc:
+            pattern:      ^/api/doc
+            security:     false
+
+        api:
+            anonymous: ~
+            pattern: ^/api/
+            # activate different ways to authenticate
+            guard:
+                authenticators:
+                    - api.token_authenticator
+
+        partner_api:
+            anonymous: ~
+            pattern: ^/partner_api/
+            # activate different ways to authenticate
+            guard:
+                authenticators:
+                    - partner_api.token_authenticator
+
+        skype_api:
+            anonymous: ~
+            pattern: ^/skype_api/
+            # activate different ways to authenticate
+            guard:
+                authenticators:
+                    - skype_api.token_authenticator
+            # http_basic: ~
+            # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+
+            # form_login: ~
+            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+        default:
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                csrf_token_generator: security.csrf.token_manager
+            logout:
+                path:   /logout
+                target: /login
+
+            anonymous: true
+        #main:
+         #   pattern: ^/offers
+          #  anonymous: ~
+           # form_login:
+            #    login_path: login
+             #   check_path: login
+    access_control:
+          - { path: ^/api, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+          - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+          - { path: ^/process, role: IS_AUTHENTICATED_ANONYMOUSLY, ip: [127.0.0.1, 213.239.218.186] }
+          - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+          - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+          - { path: ^/, roles: ROLE_USER }

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Application</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ application.id }}</td>
+            </tr>
+            <tr>
+                <th>Storeappid</th>
+                <td>{{ application.storeAppId }}</td>
+            </tr>
+            <tr>
+                <th>Issandbox</th>
+                <td>{% if application.isSandBox %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Publisherid</th>
+                <td>{{ application.publisherId }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('application_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('application_edit', { 'id': application.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,11 @@
+AppBundle\Entity\Publisher:
+    exclusion_policy: ALL
+    properties:
+        apiToken:
+            expose: true
+        name:
+            expose: true
+        skypeId:
+            expose: true
+        isSkypeBotActive:
+            expose: true

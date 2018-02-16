@@ -1,0 +1,5 @@
+
+api_out:
+    type: rest
+    resource: "@ApiOutBundle/Controller/"
+    name_prefix:  api_offers_

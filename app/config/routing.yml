@@ -1,0 +1,47 @@
+app_application:
+    resource: "@AppBundle/Controller/ApplicationController.php"
+    type:     annotation
+
+partner_api:
+    resource: "@PartnerApiBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+api_out:
+    resource: "@ApiOutBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+skype_api:
+    resource: "@SkypeApiBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mvms_partner_api:
+    type:     rest
+    prefix:   /partner_api
+    resource: "@PartnerApiBundle/Resources/config/api-routing.yml"
+
+mvms_api:
+    type:     rest
+    prefix:   /api
+    resource: "@ApiOutBundle/Resources/config/api-routing.yml"
+
+mvms_skype_api:
+    type:     rest
+    prefix:   /skype_api
+    resource: "@SkypeApiBundle/Resources/config/api-routing.yml"
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"

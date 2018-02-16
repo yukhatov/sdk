@@ -1,0 +1,11 @@
+AppBundle\Entity\Reward:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+        isRewarded:
+            expose: true
+        amount:
+            expose: true
+        offerId:
+            expose: true

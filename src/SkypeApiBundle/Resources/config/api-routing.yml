@@ -1,0 +1,5 @@
+
+api_out:
+    type: rest
+    resource: "@SkypeApiBundle/Controller/"
+    name_prefix:  skype_api

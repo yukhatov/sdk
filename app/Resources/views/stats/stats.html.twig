@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% set activeTab = 'stats' %}
+    {{ parent() }}
+
+    <div class="container-fluid"><div class="row">
+            <div class="col-md-12">
+                <div align="right">
+                    <input  type="text" id="daterange" class="input-sm" value="{{ params['fromDate'] }} - {{ params['toDate'] }}" />
+                </div>
+                <table id="stats-table" class="table">
+                    <thead>
+                        <th>Platform</th>
+                        <th>Platform Id</th>
+                        <th>Platform / Publisher / Token</th>
+                        <th>Payout total</th>
+                        <th>Conv-s count</th>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th>Total:</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div></div>
+
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/stats.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('js/stats.js') }}"></script>
+    <script type="text/javascript" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+{% endblock %}
